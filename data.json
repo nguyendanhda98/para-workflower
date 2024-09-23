@@ -1,0 +1,12 @@
+{
+  "projectsPath": "1-Projects",
+  "useFolderStructure": false,
+  "areasPath": "2-Areas",
+  "useCompanionDir": true,
+  "resourcesPath": "3-Resources",
+  "archivePath": "4-Archive",
+  "templatesFolder": "Templates",
+  "projectTemplateName": "Project Template",
+  "areaTemplateName": "Area Template",
+  "resourceTemplateName": "Resource Template"
+}
