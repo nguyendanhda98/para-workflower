@@ -1,1 +1,1 @@
-"# para-workflower" 
+Create a folder called para-workflower inside .obsidian/plugins and place files in it.
