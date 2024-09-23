@@ -9035,6 +9035,20 @@ var SettingTab = class extends import_obsidian2.PluginSettingTab {
             }, 500),
           ),
       );
+    new import_obsidian2.Setting(containerEl)
+      .setName('Template folder')
+      .setDesc('Where to place your template files?')
+      .addText((text) =>
+        text
+          .setPlaceholder(DEFAULT_SETTINGS.templatesFolder)
+          .setValue(this.plugin.settings.templatesFolder)
+          .onChange(
+            (0, import_obsidian2.debounce)(async (value) => {
+              this.plugin.settings.archivePath = (0, import_obsidian2.normalizePath)(value);
+              await this.plugin.saveSettings();
+            }, 500),
+          ),
+      );
   }
 };
 
