@@ -8923,13 +8923,11 @@ async function createProject(app, settings, properties) {
     let templateContent = await app.vault.cachedRead(templateTFile);
     const projectFile = await app.vault.create(path, templateContent);
     if (area !== null) {
+      const { areasPath } = settings;
       await app.fileManager.processFrontMatter(projectFile, (frontMatter) => {
         frontMatter.tags = frontMatter.tags || [];
         frontMatter.tags.push(area == null ? void 0 : area.toLowerCase());
-      });
-      const { areasPath } = settings;
-      await app.vault.process(projectFile, (data) => {
-        return data.replace('Area:: [[]]', `Area:: [[${areasPath}/${area}|${area}]]`);
+        frontMatter.area = `[[${areasPath}/${area}|${area}]]`;
       });
       createArea2(app, settings, { name: area });
     }
