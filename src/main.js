@@ -8929,7 +8929,7 @@ async function createProject(app, settings, properties) {
       });
       const { areasPath } = settings;
       await app.vault.process(projectFile, (data) => {
-        return data.replace('Area: [[]]', `Area: [[${areasPath}/${area}|${area}]]`);
+        return data.replace('Area:: [[]]', `Area:: [[${areasPath}/${area}|${area}]]`);
       });
       createArea2(app, settings, { name: area });
     }
@@ -9059,8 +9059,8 @@ tags:
 completed: false
 deadline: 
 ---
-Area: [[]]
-Status: #draft 
+Area:: [[]]
+Status:: #draft 
 ___
 
 ## Description
@@ -9409,7 +9409,7 @@ async function completeProject(app, settings, file) {
     frontMatter.completed = true;
   });
   await app.vault.process(file, (data) => {
-    return data.replace(/^Status:.*$/m, 'Status: #done');
+    return data.replace(/^Status::.*$/m, 'Status:: #done');
   });
   if (file.parent.path !== projectsPath) {
     const dest = (0, import_obsidian5.normalizePath)([archivePath, file.parent.name].join('/'));
@@ -9422,7 +9422,7 @@ async function completeProject(app, settings, file) {
 async function archiveProject(app, setting, file) {
   const { archivePath, projectsPath } = setting;
   await app.vault.process(file, (data) => {
-    return data.replace(/^Status:.*$/m, 'Status: #aborted');
+    return data.replace(/^Status::.*$/m, 'Status:: #aborted');
   });
   if (file.parent.path !== projectsPath) {
     const dest = (0, import_obsidian5.normalizePath)([archivePath, file.parent.name].join('/'));
@@ -9508,7 +9508,7 @@ async function restoreByType(app, settings, file, type) {
 async function restoreProject(app, settings, file) {
   const { projectsPath, archivePath } = settings;
   await app.vault.process(file, (data) => {
-    return data.replace(/^Status:.*$/m, 'Status: #pending');
+    return data.replace(/^Status::.*$/m, 'Status:: #pending');
   });
   if (file.parent.path !== archivePath) {
     const dest = (0, import_obsidian6.normalizePath)([projectsPath, file.parent.name].join('/'));
